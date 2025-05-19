@@ -1,8 +1,13 @@
+//imorted react functions
 import { useState,useEffect } from "react"
 import { Routes, Route, Link} from "react-router-dom"
+import axios from 'axios'
+//imported componets
 import Home from "./components/Home"
 import Books from "./components/Books"
-import axios from 'axios'
+import SingleBook from "./components/SingleBook"
+
+
 
 function App() {
   const [token, setToken] = useState(null)
@@ -30,6 +35,7 @@ function App() {
         <Routes>
           <Route path ="/" element={<Home/>}/>
           <Route path = "/Books" element = {<Books setAllBooks={setAllBooks} allBooks={allBooks} />}/>
+          <Route path="/singleBook/:id" element={<SingleBook allBooks = {allBooks}/>}/>
         </Routes>
     </div>
   )
