@@ -35,12 +35,12 @@ const authenticate = async (token) =>{
     if(!token){
       throw Error("No Token Found")
     }
-    const response = await axios.get("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login",{
-      headers:{
-        "Authorization": `${window.localStorage.getItem('token')}`
+    const response = await axios.get("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login", {
+      headers:{ 
+                 "Content-Type": "application/json",
+                 "Authorization" : `Bearer ${token}`
       }
     })
-    console.log(response)
     setUser(response.data)
   } 
   catch (error) {
@@ -48,16 +48,23 @@ const authenticate = async (token) =>{
   }
 }
 
+useEffect(() => {
+  const loggedInToken = window.localStorage.getItem("token")
+  if(loggedInToken){
+    authenticate(loggedInToken)
+  }
+},[user.id])
+
   return (
     <div>
-      <Navigations/>
+      <Navigations user = {user}/>
         <Routes>
-          <Route path ="/" element={<Home/>}/>
-          <Route path = "/Books" element = {<Books setAllBooks={setAllBooks} allBooks={allBooks} />}/>
-          <Route path="/singleBook/:id" element={<SingleBook allBooks = {allBooks}/>}/>
-          <Route path = "/Register" element = {<Register token ={token} setToken={setToken} setUser={setUser}/>}/>
-          <Route path = "/login" element ={<Login authenticate={authenticate}/>}/>
-          <Route path = "/account" element ={<Account />}/>
+          <Route path = "/" element = {<Home/>}/>
+          <Route path = "/Books" element = {<Books setAllBooks = {setAllBooks} allBooks = {allBooks} />}/>
+          <Route path = "/singleBook/:id" element= {<SingleBook allBooks = {allBooks}/>}/>
+          <Route path = "/Register" element = {<Register/>}/>
+          <Route path = "/login" element = {<Login authenticate = {authenticate}/>}/>
+          <Route path = "/account" element = {<Account user = {user} />}/>
         </Routes>
     </div>
   )

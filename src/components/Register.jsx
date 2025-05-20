@@ -1,7 +1,7 @@
 /* TODO - add your code to create a functional React component that renders a registration form */
 import './book.css'
 import axios from 'axios'
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 function Register (){
