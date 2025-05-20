@@ -1,0 +1,40 @@
+.NavBar{
+    text-decoration: none;
+    border: 2px solid seagreen;
+    display: flex ;
+    justify-content: space-between;
+    background-color: darkorange;
+    padding: 1rem;
+}
+
+.BookContainer{
+    display: flex;
+    flex-wrap: wrap;
+    border: 3px solid darkorange;
+    margin: 1%;
+    padding:S 5px;
+}
+
+.BookContainer > .BookCard{
+margin: 1%;
+padding: 2%;
+justify-content: space-between;
+border: 3px solid seagreen;
+background-color: darkorange;
+}
+
+img {
+    height: 10rem;
+    width: 6rem;
+    border: 3px solid black;
+}
+.registration{
+ border: 3px solid seagreen;
+ padding : 2rem;
+}
+.reg{
+   display: flex;
+    flex: wrap;
+    justify-content: center;
+    align-content:center ;
+}

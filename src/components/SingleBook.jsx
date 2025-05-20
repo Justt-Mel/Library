@@ -10,7 +10,7 @@ const bookId = params.id * 1
 const book =  allBooks.find((book) => book.id === bookId);
 
 let bookStatus = "";
-if (book && book.available === false) {
+if ( book.available === false) {
     bookStatus = "checked out";
 }
 else{

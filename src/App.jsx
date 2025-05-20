@@ -7,6 +7,7 @@ import Home from "./components/Home"
 import Books from "./components/Books"
 import SingleBook from "./components/SingleBook"
 import Navigations from "./components/Navigations"
+import Register from "./components/Register"
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path ="/" element={<Home/>}/>
           <Route path = "/Books" element = {<Books setAllBooks={setAllBooks} allBooks={allBooks} />}/>
           <Route path="/singleBook/:id" element={<SingleBook allBooks = {allBooks}/>}/>
+          <Route path = "/Register" element = {<Register/>}/>
         </Routes>
     </div>
   )
