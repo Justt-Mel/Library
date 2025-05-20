@@ -8,6 +8,8 @@ import Books from "./components/Books"
 import SingleBook from "./components/SingleBook"
 import Navigations from "./components/Navigations"
 import Register from "./components/Register"
+import Login from "./components/Login"
+import Account from "./components/Account"
 
 
 function App() {
@@ -40,7 +42,8 @@ const authenticate = async (token) =>{
     })
     console.log(response)
     setUser(response.data)
-  } catch (error) {
+  } 
+  catch (error) {
     console.error(error)
   }
 }
@@ -53,6 +56,8 @@ const authenticate = async (token) =>{
           <Route path = "/Books" element = {<Books setAllBooks={setAllBooks} allBooks={allBooks} />}/>
           <Route path="/singleBook/:id" element={<SingleBook allBooks = {allBooks}/>}/>
           <Route path = "/Register" element = {<Register token ={token} setToken={setToken} setUser={setUser}/>}/>
+          <Route path = "/login" element ={<Login authenticate={authenticate}/>}/>
+          <Route path = "/account" element ={<Account />}/>
         </Routes>
     </div>
   )
