@@ -10,7 +10,7 @@ function Register (){
     const register = async (formData) => {
         const firstName = formData.get("FirstName")
         const password = formData.get("password")
-        const lastName = formData.get("name")
+        const lastName = formData.get("LastName")
         const email = formData.get("email")
         const user = {
             firstName,
@@ -28,8 +28,6 @@ function Register (){
         }
     }
 
-
-
     return (
         <div>
             <h1>Register Below</h1>
@@ -38,23 +36,23 @@ function Register (){
                 <label>
                     FirstName:
                     <br />
-                    <input type="text"  name='FirstName'/>
+                    <input type="text"  name='FirstName' required/>
                 </label>
                 <br />
                 <label>
                     LastName:
                     <br />
-                    <input type="text" name='LastName' />
+                    <input type="text" name='LastName' required/>
                 </label>
                 <br />
                 <label >
                     email: <br />
-                    <input type="text" name='email'/>
+                    <input type="text" name='email' required/>
                 </label>
                 <br />
                 <label>
                     password: <br />
-                    <input type="password"  name='password'/>
+                    <input type="password"  name='password' required/>
                 </label>
                 <br />
                 <button>register</button>

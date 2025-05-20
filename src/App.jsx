@@ -12,6 +12,7 @@ import Register from "./components/Register"
 
 function App() {
   const [token, setToken] = useState(null)
+  const [user,setUser] = useState("")
  const [allBooks, setAllBooks] = useState([])
 
  useEffect( ()=>{
@@ -27,6 +28,23 @@ function App() {
   FetchBooks()
 },[])
 
+const authenticate = async (token) =>{
+  try {
+    if(!token){
+      throw Error("No Token Found")
+    }
+    const response = await axios.get("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login",{
+      headers:{
+        "Authorization": `${window.localStorage.getItem('token')}`
+      }
+    })
+    console.log(response)
+    setUser(response.data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
   return (
     <div>
       <Navigations/>
@@ -34,7 +52,7 @@ function App() {
           <Route path ="/" element={<Home/>}/>
           <Route path = "/Books" element = {<Books setAllBooks={setAllBooks} allBooks={allBooks} />}/>
           <Route path="/singleBook/:id" element={<SingleBook allBooks = {allBooks}/>}/>
-          <Route path = "/Register" element = {<Register/>}/>
+          <Route path = "/Register" element = {<Register token ={token} setToken={setToken} setUser={setUser}/>}/>
         </Routes>
     </div>
   )
