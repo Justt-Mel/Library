@@ -29,6 +29,7 @@ img {
     border: 3px solid black;
 }
 .registration{
+background-color: darkorange;
  border: 3px solid seagreen;
  padding : 2rem;
 }
@@ -37,4 +38,16 @@ img {
     flex: wrap;
     justify-content: center;
     align-content:center ;
+}
+.loginForm{
+    display: flex;
+    flex: wrap;
+    justify-content: center;
+    align-content: center ;
+    margin: 10rem;
+}
+.login{
+   background-color: darkorange;
+   border: 3px solid seagreen;
+   padding : 2rem;
 }

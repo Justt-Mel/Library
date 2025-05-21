@@ -1,6 +1,7 @@
 /* TODO - add your code to create a functional React component that renders a login form */
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import './book.css'
 
 function Login({authenticate}){
    const navigate =useNavigate()
@@ -25,7 +26,8 @@ function Login({authenticate}){
 
     return(
         <div>
-            <form action={login} className='LoginForm'>
+            <div className='loginForm'>
+             <form action={login} className='login'>
                 <label>
                     email:
                     <br />
@@ -40,6 +42,8 @@ function Login({authenticate}){
                 <br />
                 <button>Login</button>
             </form>
+            </div>
+            
         </div>
     )
 }

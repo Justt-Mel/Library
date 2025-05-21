@@ -8,21 +8,21 @@ function Register (){
     const navigate = useNavigate()
 
     const register = async (formData) => {
-        const firstName = formData.get("FirstName")
-        const password = formData.get("password")
-        const lastName = formData.get("LastName")
+        const firstname = formData.get("firstname")
+        const lastname = formData.get("lastname")
         const email = formData.get("email")
+        const password = formData.get("password")
         const user = {
-            firstName,
-            lastName,
+            firstname,
+            lastname,
             email,
             password
         }
         try {
-            const {data}= await axios.post('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register',user)
+            const {data} = await axios.post('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register',user)
             console.log(data)
-            alert("thank you for registering")
-            navigate('/')
+            alert("Thank You For Registering")
+            navigate('/login')
         } catch (error) {
             console.error(error)
         }
@@ -34,25 +34,23 @@ function Register (){
           <div className='reg'>
             <form action={register} className="registration">
                 <label>
-                    FirstName:
-                    <br />
-                    <input type="text"  name='FirstName' required/>
+                    firstname:<br />
+                    <input type = "text"  name = "firstname" required/>
                 </label>
                 <br />
                 <label>
-                    LastName:
-                    <br />
-                    <input type="text" name='LastName' required/>
+                    lastname:<br />
+                    <input type = "text" name = "lastname" required/>
                 </label>
                 <br />
                 <label >
                     email: <br />
-                    <input type="text" name='email' required/>
+                    <input type = "email" name = "email" required/>
                 </label>
                 <br />
                 <label>
                     password: <br />
-                    <input type="password"  name='password' required/>
+                    <input type = "password"  name = "password" required/>
                 </label>
                 <br />
                 <button>register</button>

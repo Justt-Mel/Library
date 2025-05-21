@@ -14,8 +14,9 @@ import Account from "./components/Account"
 
 function App() {
   const [token, setToken] = useState(null)
-  const [user,setUser] = useState("")
- const [allBooks, setAllBooks] = useState([])
+  const [user,setUser] = useState({})
+  const [allBooks, setAllBooks] = useState([])
+  const [reservations , setReservations] = useState([])
 
  useEffect( ()=>{
   const FetchBooks = async ()=>{
@@ -30,23 +31,27 @@ function App() {
   FetchBooks()
 },[])
 
-const authenticate = async (token) =>{
+const authenticate = async (token) => {
   try {
-    if(!token){
-      throw Error("No Token Found")
+    if (!token) {
+      throw Error("No Token Found");
     }
-    const response = await axios.get("https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/login", {
-      headers:{ 
-                 "Content-Type": "application/json",
-                 "Authorization" : `Bearer ${token}`
+    const response = await axios.get(
+      "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       }
-    })
-    setUser(response.data)
-  } 
-  catch (error) {
-    console.error(error)
+    );
+    setToken(token)
+    setUser(response.data);
+    console.log(response.data)
+  } catch (error) {
+    console.error(error);
   }
-}
+};
 
 useEffect(() => {
   const loggedInToken = window.localStorage.getItem("token")
@@ -57,14 +62,14 @@ useEffect(() => {
 
   return (
     <div>
-      <Navigations user = {user}/>
+      <Navigations/>
         <Routes>
           <Route path = "/" element = {<Home/>}/>
           <Route path = "/Books" element = {<Books setAllBooks = {setAllBooks} allBooks = {allBooks} />}/>
           <Route path = "/singleBook/:id" element= {<SingleBook allBooks = {allBooks}/>}/>
-          <Route path = "/Register" element = {<Register/>}/>
+          <Route path = "/register" element = {<Register/>}/>
           <Route path = "/login" element = {<Login authenticate = {authenticate}/>}/>
-          <Route path = "/account" element = {<Account user = {user} />}/>
+          <Route path = "/account" element = {<Account user = {user}  setUser={setUser} />}/>
         </Routes>
     </div>
   )
